@@ -3,7 +3,8 @@ class UsersController < ApplicationController
   def group_index
     key_list = []
     name_list = []
-    User.last.pre_group_id.times do |i|
+    max_count = User.all.pluck(:pre_group_id).max
+    max_count.times do |i|
       user = User.where(pre_group_id: i+1)
       key_list[i] = user.first.pre_group_id
       name_list[i] = user.map{|user| user.name}
