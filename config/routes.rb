@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  root to: 'users#group_index'
   get '/groups', to: 'users#group_index'
   post '/group_index', to: 'users#shuffle_index'
   get '/users', to: 'users#employee_index'
