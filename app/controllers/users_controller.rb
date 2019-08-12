@@ -1,12 +1,12 @@
 class UsersController < ApplicationController
 # グループ作成関連  
   def group_index
-    @users = User.all 
+    @group.all 
   end
 
   def shuffle_group
+    @group.all
   end
-
   
 # 社員関連
   def employee_index
