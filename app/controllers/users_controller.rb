@@ -19,7 +19,7 @@ class UsersController < ApplicationController
 
 # 社員関連
   def employee_index
-    @user = User.all
+    User.all
   end
 
   def show
