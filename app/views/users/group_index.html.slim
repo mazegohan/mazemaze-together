@@ -9,11 +9,11 @@ table.table.table-hover
       th = User.human_attribute_name(:leader_flg)
       th
   tbody
-    - @group.each do |user|
+    - @group.each do |last_month_group_num, name|
       tr 
-        td = user.name
-        td = user.group_id
-        td = user.leader_flg
+        td = name
+        td = last_month_group_num
+        td = User.where(name: name).leader_flg
         td
           /以下にシャッフルボタン実装（仮）
           /= link_to 'まぜまぜする', suffle_groups_path(user), class: 'btn btn-primary mr-3'
