@@ -1,0 +1,15 @@
+current directory: /Users/yasuharakenya/mazemaze-together/vendor/bundle/gems/bindex-0.8.1/ext/skiptrace
+/Users/yasuharakenya/.rbenv/versions/2.4.1/bin/ruby -r ./siteconf20190804-27341-hditcc.rb extconf.rb
+creating Makefile
+
+current directory: /Users/yasuharakenya/mazemaze-together/vendor/bundle/gems/bindex-0.8.1/ext/skiptrace
+make "DESTDIR=" clean
+
+current directory: /Users/yasuharakenya/mazemaze-together/vendor/bundle/gems/bindex-0.8.1/ext/skiptrace
+make "DESTDIR="
+compiling cruby.c
+linking shared-object skiptrace/internal/cruby.bundle
+
+current directory: /Users/yasuharakenya/mazemaze-together/vendor/bundle/gems/bindex-0.8.1/ext/skiptrace
+make "DESTDIR=" install
+/usr/bin/install -c -m 0755 cruby.bundle ./.gem.20190804-27341-ahwd5g/skiptrace/internal
