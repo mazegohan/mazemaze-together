@@ -7,11 +7,10 @@ class UsersController < ApplicationController
   def shuffle_group
     @group.all
   end
-
   
 # 社員関連
   def employee_index
-    User.all
+    User.all.order(id: "ASC")
   end  
 
   def show
