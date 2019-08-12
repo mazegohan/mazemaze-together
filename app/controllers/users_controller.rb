@@ -1,17 +1,16 @@
 class UsersController < ApplicationController
 # グループ作成関連  
   def group_index
-    @group.all 
+    @users = User.all 
   end
 
   def shuffle_group
-    @group.all
   end
 
   
 # 社員関連
   def employee_index
-    User.all
+    User.all.order(id: "ASC")
   end  
 
   def show

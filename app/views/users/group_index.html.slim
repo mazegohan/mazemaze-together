@@ -1,0 +1,20 @@
+| グループ一覧
+
+.mb-3
+table.table.table-hover
+  thead.thead-default
+    tr
+      th = User.human_attribute_name(:name)
+      th = User.human_attribute_name(:group_id)
+      th = User.human_attribute_name(:leader_flg)
+      th
+  tbody
+    - @users.each do |user|
+      tr 
+        td = user.name
+        td = user.group_id
+        td = user.leader_flg
+        td
+          /以下にシャッフルボタン実装（仮）
+          /= link_to 'まぜまぜする', suffle_groups_path(user), class: 'btn btn-primary mr-3'
+
