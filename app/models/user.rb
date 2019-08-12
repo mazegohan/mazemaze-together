@@ -7,6 +7,8 @@ class User < ApplicationRecord
   # leader_flg      integer # まぜごはんのリーダー
 
   validates :name, presence: true
+  validates :pre_group_id, presence: true
+  validates :group_id, presence: true
   validates :position_id, presence: true
   validates :leader_flg, presence: true
 
