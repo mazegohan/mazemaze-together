@@ -4,6 +4,7 @@ class UsersController < ApplicationController
     key_list = []
     name_list = []
     max_count = User.all.pluck(:pre_group_id).max
+
     max_count.times do |i|
       user = User.where(pre_group_id: i+1)
       key_list[i] = user.first.pre_group_id
@@ -14,15 +15,23 @@ class UsersController < ApplicationController
   end
 
   def shuffled_group
-    @shuffled_group = User.all
+    key_list = []
+    name_list = []
+    member_ary = []
+    leader_ary = []
+    max_count = User.all.pluck(:pre_group_id).max
+
+    # 先月のまぜご飯のリーダーを絞り込む
+    max_count.times do |i|
+      user = User&.where(pre_group_id: i+1, leader_flg: 1)
+      name_list[i] = user.map{ |user| user.name }
+    end
   end
-<<<<<<< HEAD
-=======
->>>>>>> master
+
 # 社員関連
   def employee_index
     User.all.order(id: "ASC")
-  end  
+  end
 
   def show
     @user = User.find(params[:id])
