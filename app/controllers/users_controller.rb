@@ -16,13 +16,11 @@ class UsersController < ApplicationController
   def shuffled_group
     @shuffled_group = User.all
   end
-<<<<<<< HEAD
-=======
->>>>>>> master
+
 # 社員関連
   def employee_index
     User.all.order(id: "ASC")
-  end  
+  end
 
   def show
     @user = User.find(params[:id])
