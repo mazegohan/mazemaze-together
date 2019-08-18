@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-# グループ作成関連
+  # 今月のグループ表示ロジック
   def group_index
     key_list = []
     name_list = []
@@ -13,13 +13,15 @@ class UsersController < ApplicationController
     @group = [key_list, name_list].transpose.to_h
   end
 
+  # グループ組み合わせロジック
   def shuffled_group
     @shuffled_group = User.all
   end
+
 # 社員関連
   def employee_index
     User.all.order(id: "ASC")
-  end  
+  end
 
   def show
     @user = User.find(params[:id])
