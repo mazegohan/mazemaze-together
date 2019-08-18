@@ -10,10 +10,11 @@ table.table.table-hover
       th
   tbody
     - @group.each do |last_month_group_num, name|
-      tr 
+      tr
         td = name
+        td = puts name
         td = last_month_group_num
-        td = User.where(name: name).leader_flg
+        td = User.find_by(name: name).leader_flg
         td
           /以下にシャッフルボタン実装（仮）
           /= link_to 'まぜまぜする', suffle_groups_path(user), class: 'btn btn-primary mr-3'

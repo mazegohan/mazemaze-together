@@ -18,10 +18,6 @@ class UsersController < ApplicationController
     @shuffled_group = User.all
   end
 
-  def shuffled_group
-    @shuffled_group = User.all
-  end
-
 # 社員関連
   def employee_index
     User.all.order(id: "ASC")
