@@ -4,17 +4,14 @@
 table.table.table-hover
   thead.thead-default
     tr
-      th = User.human_attribute_name(:name)
-      th = User.human_attribute_name(:group_id)
-      th = User.human_attribute_name(:leader_flg)
+      th = t('activerecord.attributes.user.group_id')
+      th = User.human_attribute_name :name
       th
   tbody
-    - @group.each do |last_month_group_num, name|
+    - @group.each do |group_num, names|
       tr
-        td = name
-        td = puts name
-        td = last_month_group_num
-        td = User.find_by(name: name).leader_flg
+        td = group_num
+        td = names.uniq.join("／")
         td
           /以下にシャッフルボタン実装（仮）
           /= link_to 'まぜまぜする', suffle_groups_path(user), class: 'btn btn-primary mr-3'
