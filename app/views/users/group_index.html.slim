@@ -8,10 +8,10 @@ table.table.table-hover
       th = User.human_attribute_name :name
       th
   tbody
-    - @pre_group.each do |group_num, names|
+    - @group.each do |group_num, names|
       tr
         td = group_num
         td = names.uniq.join("／")
         td
-          /以下にシャッフルボタン実装（仮）
-          = link_to 'まぜまぜする', group_index_path(@post_group), class: 'btn btn-primary mr-3'
+  /以下にシャッフルボタン実装（仮）
+  = link_to 'まぜまぜする', group_index_path(@post_group), class: 'btn btn-primary mr-3'
