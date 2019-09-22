@@ -1,10 +1,12 @@
 class UsersController < ApplicationController
-# グループ作成関連
+  # 今月のグループ表示ロジック
   def group_index
     pre_group_ids = []
     name_list = []
 
+
     group_count.times do |i|
+
       user = User.where(pre_group_id: i+1)
       pre_group_ids[i] = user.first.pre_group_id
       name_list[i] = user.map{|user| user.name}
@@ -13,6 +15,7 @@ class UsersController < ApplicationController
     @pre_group = [pre_group_ids, name_list].transpose.to_h
   end
 
+  # グループ組み合わせロジック
   def shuffled_group
     member_ary = []
     leader_ary = []
