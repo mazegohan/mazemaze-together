@@ -18,7 +18,6 @@ class UsersController < ApplicationController
     leader_ary = []
     shuffled_group = []
     duplicate_group = []
-    target_index = 0
     insert_target_index = 0
 
     # 先月のまぜご飯のリーダーを絞り込む
