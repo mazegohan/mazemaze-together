@@ -1,16 +1,16 @@
 class UsersController < ApplicationController
 # グループ作成関連
   def group_index
-    key_list = []
+    pre_group_ids = []
     name_list = []
 
     group_count.times do |i|
       user = User.where(pre_group_id: i+1)
-      key_list[i] = user.first.pre_group_id
+      pre_group_ids[i] = user.first.pre_group_id
       name_list[i] = user.map{|user| user.name}
     end
     # @pre_group = {1=>["鵜殿", "小池", "勝又"], 2=>["渡邉", "吉貝", "澤田"]..etc}
-    @pre_group = [key_list, name_list].transpose.to_h
+    @pre_group = [pre_group_ids, name_list].transpose.to_h
   end
 
   def shuffled_group
@@ -18,6 +18,8 @@ class UsersController < ApplicationController
     leader_ary = []
     shuffled_group = []
     duplicate_group = []
+    target_index = 0
+    insert_target_index = 0
 
     # 先月のまぜご飯のリーダーを絞り込む
     leader_ary = User.where( leader_flg: 1 )
@@ -25,29 +27,26 @@ class UsersController < ApplicationController
     # 先月のまぜご飯のメンバーを絞り込む
     member_ary = User.where( leader_flg: 0 )
 
-    # メンバーをシャッフルする処理
-    member_ary.to_a.shuffle!.each_slice(2) do |member|
-      duplicate_group << member if member.pluck(:pre_group_id)[0] == member.pluck(:pre_group_id)[1]
-      shuffled_group << member
-    end
+    # メンバーをシャッフルして2人組に分ける処理
+    shuffled_group = member_ary.to_a.shuffle!.each_slice(2).to_a
 
-    # 重複したメンバーをなくす処理
-    duplicate_group.each_with_index do |group, i|
-      break if group.blank?
-      shuffled_group[i][0] = group[0] if shuffled_group[i][0].pre_group_id != group[0].pre_group_id
-      shuffled_group << group
-    end
-
-    # メンバーの配列に前回のリーダーを入れる
+    # 2人組のメンバー配列に前回のまぜご飯リーダーを入れる
     leader_ary.to_a.shuffle!.each_with_index do |leader, i|
       shuffled_group[i] << leader
     end
 
-    # 最後にグループ内メンバーの重複をなくす
-    shuffled_group.each_slice(3) do |group|
+    # 1人グループのindexを探す
+    shuffled_group.each_with_index do |group, i|
+      insert_target_index = i if group.count == 1
     end
 
-    @post_group
+    ## 1人グループを別グループに挿入
+    shuffled_group[insert_target_index - 1] << shuffled_group[insert_target_index]
+
+    ## 1人グループを削除
+    shuffled_group.delete_at(insert_target_index)
+
+    @shuffled_group = shuffled_group
   end
 
   # 社員関連
