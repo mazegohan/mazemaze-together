@@ -1,4 +1,5 @@
-| グループ一覧
+h2.title
+  = t('activerecord.models.user')
 
 .mb-3
 table.table.table-hover
@@ -13,5 +14,5 @@ table.table.table-hover
         td = group_num
         td = names.uniq.join("／")
         td
-          /以下にシャッフルボタン実装（仮）
-          /= link_to 'まぜまぜする', suffle_groups_path(user), class: 'btn btn-primary mr-3'
+  /以下にシャッフルボタン実装（仮）
+  = link_to 'まぜまぜする', group_index_path(@post_group), class: 'btn btn-primary mr-3'
