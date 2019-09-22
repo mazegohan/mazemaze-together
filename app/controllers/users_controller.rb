@@ -4,9 +4,7 @@ class UsersController < ApplicationController
     pre_group_ids = []
     name_list = []
 
-
     group_count.times do |i|
-
       user = User.where(pre_group_id: i+1)
       pre_group_ids[i] = user.first.pre_group_id
       name_list[i] = user.map{|user| user.name}
